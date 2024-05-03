@@ -28,7 +28,7 @@ public class TBSwitchToWebViewIOS {
         xcuiTestOptions.setDeviceName("iPhone 15 Pro");
         //xcuiTestOptions.autoWebview();
       //  xcuiTestOptions.autoWebview();
-        xcuiTestOptions.setCapability("includeSafariInWebviews", true);
+      //  xcuiTestOptions.setCapability("includeSafariInWebviews", true);
         //xcuiTestOptions.setCapability("allowProvisioningUpdates", true);
 
         xcuiTestOptions.autoAcceptAlerts();

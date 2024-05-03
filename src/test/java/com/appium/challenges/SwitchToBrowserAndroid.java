@@ -26,6 +26,11 @@ import static java.util.Collections.singletonList;
 public class SwitchToBrowserAndroid {
     AndroidDriver androidDriver;
 
+    /**
+     * appium server --use-plugins=element-wait --allow-insecure chromedriver_autodownload
+     * @throws MalformedURLException
+     * @throws InterruptedException
+     */
     @Test
     public void switchToChrome() throws MalformedURLException, InterruptedException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -40,7 +45,7 @@ public class SwitchToBrowserAndroid {
         desiredCapabilities.setCapability("appPackage", "com.google.android.apps.messaging");
         uiAutomator2Options.merge(desiredCapabilities);
         androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723"), uiAutomator2Options);
-        androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         Thread.sleep(5000);
         androidDriver.activateApp("com.google.android.apps.messaging");
 
@@ -82,9 +87,12 @@ public class SwitchToBrowserAndroid {
         } catch (Exception e){
 
         }*/
+       // switchToWebView();
+        Thread.sleep(5000);
         androidDriver.activateApp("com.android.chrome");
         Thread.sleep(10000);
         switchToWebView();
+
         String url = androidDriver.getCurrentUrl();
         System.out.println("URL --- " + url);
 

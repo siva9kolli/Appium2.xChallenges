@@ -23,16 +23,16 @@ public class SwitchToBrowserIOS {
     public void SwitchToBrowser() throws MalformedURLException, InterruptedException {
         XCUITestOptions xcuiTestOptions = new XCUITestOptions();
         xcuiTestOptions.setAutomationName("XCUITest");
-        xcuiTestOptions.setPlatformVersion("17.2");
+        xcuiTestOptions.setPlatformVersion("17.4");
         xcuiTestOptions.setPlatformName("iOS");
-        xcuiTestOptions.setDeviceName("iPhone 15 Pro");
+        xcuiTestOptions.setDeviceName("iPhone 15 Pro Max");
         //xcuiTestOptions.autoWebview();
       //  xcuiTestOptions.autoWebview();
         xcuiTestOptions.setCapability("includeSafariInWebviews", true);
         //xcuiTestOptions.setCapability("allowProvisioningUpdates", true);
 
         xcuiTestOptions.autoAcceptAlerts();
-        xcuiTestOptions.setApp(System.getProperty("user.dir") + "/src/main/resources/Zaggle.app");
+        xcuiTestOptions.setApp(System.getProperty("user.dir") + "/src/main/resources/apple.app");
         iosDriver = new IOSDriver(new URL("http://127.0.0.1:4723"), xcuiTestOptions);
         iosDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         iosDriver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[$label == 'Sign Up'$]")).click();
@@ -46,7 +46,7 @@ public class SwitchToBrowserIOS {
         Thread.sleep(2000);
         System.out.println(iosDriver.getCurrentUrl());
 
-        iosDriver.activateApp("com.Zaggle.staging");
+        iosDriver.activateApp("com.apple.staging");
         switchToNativeView();
         String message = iosDriver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[$label == 'Privacy Policy'$]")).getText();
         System.out.println(message);

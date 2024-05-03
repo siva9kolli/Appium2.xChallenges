@@ -27,9 +27,11 @@ public class TBSwitchToBrowserIOS {
         xcuiTestOptions.setAutomationName("XCUITest");
         xcuiTestOptions.setPlatformVersion("17.2");
         xcuiTestOptions.setPlatformName("iOS");
+        //xcuiTestOptions.setDeviceName("iPad Pro(12.9-inch)");
         xcuiTestOptions.setDeviceName("iPhone 15 Pro");
         xcuiTestOptions.setCapability("includeSafariInWebviews", true);
         xcuiTestOptions.autoAcceptAlerts();
+        xcuiTestOptions.setCommandTimeouts(Duration.ofSeconds(120));
         xcuiTestOptions.setApp(System.getProperty("user.dir") + "/src/main/resources/TestBrigade.app");
         iosDriver = new IOSDriver(new URL("http://127.0.0.1:4723"), xcuiTestOptions);
         iosDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
@@ -39,13 +41,13 @@ public class TBSwitchToBrowserIOS {
         iosDriver.findElement(AppiumBy.iOSNsPredicateString("name == 'Return'")).click();
         iosDriver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeButton[$name == 'Submit'$]")).click();
 
-        Thread.sleep(2000);
+        Thread.sleep(10000);
         switchToView("WEBVIEW");
         iosDriver.activateApp("com.apple.mobilesafari");
-        //iosDriver.executeScript("mobile: launchApp", ImmutableMap.of("bundleId", "com.Zaggle.staging"));
-        Thread.sleep(2000);
+        //iosDriver.executeScript("mobile: launchApp", ImmutableMap.of("bundleId", "com.test.staging"));
+        Thread.sleep(5000);
         switchToView("WEBVIEW");
-        Thread.sleep(2000);
+        Thread.sleep(10000);
         System.out.println(iosDriver.getCurrentUrl());
 
         iosDriver.activateApp("com.testbrigade.ios");
