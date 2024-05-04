@@ -36,6 +36,42 @@ accessbilityId
 xpath -
 uiAutomator
 
+Setup IOS Real Device:
+
+IOS Device Setup:
+
+npm cache clean --force.
+npm install -g appium@next
+appium driver install xcuitest
+appium driver install uiautomator2
+
+* 		Install above applications and connect real device to mac
+* 		Install latest xcode and latest Appium if ur device version is above ios 15…
+Go to webdriveragent path (cd  /Users/shiva/.appium/node_modules/appium-xcuitest-driver/node_modules/appium-webdriveragent
+
+* 		Open . then open webdriver agnet folder
+* 		Open webdriver agent project in xcode
+* 		Select device
+* 		Select folder icon at top left panel
+* 		Select webdriveragentRunner under Signing&Capabilities tab
+* 		Add any apple account and select team under drop down
+* 		Go to build settings and select Product Bundle Identifier(Double click) in packing section and change until it accept in Signing&Capabilities
+* 		 Get device udid[xcode->window->device&simulators->select device]
+* 		Check all setup is successful or NOT using below command
+
+xcodebuild -project WebDriverAgent.xcodeproj -scheme WebDriverAgentRunner -destination 'id=00008020-000525661A68002E' -allowProvisioningUpdates test
+
+
+
+xcodebuild -project WebDriverAgent.xcodeproj -scheme WebDriverAgentRunner -destination 'id=00008020-000525661A68002E' -allowProvisioningUpdates test
+
+
+* 		Device, Go to General-> VPN&development -> Give persmission
+
+
+ideviceinstaller -l
+
+xcrun --sdk iphonesimulator --show-sdk-version
 
 
 
