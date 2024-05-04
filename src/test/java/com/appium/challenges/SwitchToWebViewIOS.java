@@ -63,15 +63,21 @@ public class SwitchToWebViewIOS {
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence scroll = new Sequence(finger, 1);
         scroll.addAction(
-                finger.createPointerMove(Duration.ofMillis(0),
-                        PointerInput.Origin.viewport(), x, start_y));
+                finger.createPointerMove(
+                        Duration.ofMillis(0),
+                        PointerInput.Origin.viewport(),
+                        x, start_y));
 
-        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        scroll.addAction(
+                finger.createPointerDown(
+                        PointerInput.MouseButton.LEFT.asArg()));
 
         scroll.addAction(new Pause(finger, Duration.ofMillis(600)));
+
         scroll.addAction(
                 finger.createPointerMove(Duration.ofMillis(600),
-                        PointerInput.Origin.viewport(), x, end_y));
+                        PointerInput.Origin.viewport(),
+                        x, end_y));
 
         scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 

@@ -111,6 +111,7 @@ public class SwitchToNativeFromNative {
         androidDriver.activateApp("com.nobroker.app");
         Thread.sleep(2000);
         androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Need Assistance?\")")).isDisplayed();
+        scrollToBottomLatest();
         String number = androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"We are just a call away\")")).getText();
         System.out.println(number);
         Thread.sleep(3000);

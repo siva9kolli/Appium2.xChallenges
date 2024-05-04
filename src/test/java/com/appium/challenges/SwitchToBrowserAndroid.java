@@ -47,6 +47,7 @@ public class SwitchToBrowserAndroid {
         androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723"), uiAutomator2Options);
         androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         Thread.sleep(5000);
+
         androidDriver.activateApp("com.google.android.apps.messaging");
 
         try {
@@ -73,22 +74,6 @@ public class SwitchToBrowserAndroid {
         androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"https://appium.io/docs/en/latest/\").instance(0)")).click();
         Thread.sleep(10000);
 
-        //  switchToWebView();
-
-       /* try {
-            //androidDriver.findElement(AppiumBy.id("terms_accept")).click();
-            try {
-                androidDriver.findElement(AppiumBy.xpath("//*[@text='Accept & continue']")).click();
-            }catch (Exception e1){
-
-            }
-            androidDriver.findElement(AppiumBy.xpath("//*[@text='No thanks']")).click();
-            //androidDriver.findElement(AppiumBy.id("negative_button")).click();
-        } catch (Exception e){
-
-        }*/
-       // switchToWebView();
-        Thread.sleep(5000);
         androidDriver.activateApp("com.android.chrome");
         Thread.sleep(10000);
         switchToWebView();
@@ -113,7 +98,6 @@ public class SwitchToBrowserAndroid {
 
         androidDriver.findElement(AppiumBy.accessibilityId("Navigate up")).click();
         longPressOnElement(androidDriver, androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceIdMatches(\".*conversation_name\")")));
-
         androidDriver.findElement(AppiumBy.accessibilityId("Delete")).click();
         androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Delete\")")).click();
     }
@@ -144,14 +128,11 @@ public class SwitchToBrowserAndroid {
         Point locationOfElement =
                 new Point(location.getX() + size.getWidth() / 2,
                           location.getY() + size.getHeight() / 2);
-                //getLocationOfElement(location, size);
 
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
         Sequence sequence = new Sequence(finger1, 1)
                 .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), locationOfElement))
-
                 .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-
                 .addAction(new Pause(finger1, Duration.ofSeconds(5)))
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 

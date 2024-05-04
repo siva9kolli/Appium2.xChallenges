@@ -8,6 +8,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,25 +21,32 @@ public class ExecutionOnBrowserStack {
     AndroidDriver androidDriver;
     WebDriverWait wait;
 
+    @AfterTest
+    public void killSession(){
+        androidDriver.quit();
+    }
+
     @BeforeTest
     public void setUp() throws MalformedURLException, InterruptedException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+
         UiAutomator2Options uiAutomator2Options = new UiAutomator2Options();
         uiAutomator2Options.setAutomationName("UiAutomator2");
         uiAutomator2Options.setPlatformVersion("12.0");
         uiAutomator2Options.setPlatformName("Android");
         uiAutomator2Options.setDeviceName("Google Pixel 5");
         //uiAutomator2Options.setApp(System.getProperty("user.dir")+"/src/main/resources/NoBroker.apk");
-        uiAutomator2Options.setApp("bs://8db1bebd3507ab1eb0fb5e857fdb9fcab3428019");
+        uiAutomator2Options.setApp("bs://d954882d41c02cfb0220433b23d519cb858b4f25");
         uiAutomator2Options.setAppPackage("com.nobroker.app");
         uiAutomator2Options.setAppWaitActivity("com.nobroker.app.activities.NBLauncherActivity");
 
-
         HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+        browserstackOptions.put("interactiveDebugging",true);
+        browserstackOptions.put("browserstack.debug",true);
         browserstackOptions.put("appiumVersion", "2.0.0");
         desiredCapabilities.setCapability("bstack:options", browserstackOptions);
         uiAutomator2Options.merge(desiredCapabilities);
-        androidDriver = new AndroidDriver(new URL("https://sivareddy_cnbmzj:HCpYpbNsUFNNsByoRp3S@hub.browserstack.com/wd/hub"), uiAutomator2Options);
+        androidDriver = new AndroidDriver(new URL("https://sivareddy_Cnbmzj:HCpYpbNsUFNNsByoRp3S@hub.browserstack.com/wd/hub"), uiAutomator2Options);
         //androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723"), uiAutomator2Options);
         wait = new WebDriverWait(androidDriver, Duration.ofSeconds(30));
         Thread.sleep(5000);

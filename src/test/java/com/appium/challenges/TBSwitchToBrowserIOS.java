@@ -34,6 +34,7 @@ public class TBSwitchToBrowserIOS {
         xcuiTestOptions.setCommandTimeouts(Duration.ofSeconds(120));
         xcuiTestOptions.setApp(System.getProperty("user.dir") + "/src/main/resources/TestBrigade.app");
         iosDriver = new IOSDriver(new URL("http://127.0.0.1:4723"), xcuiTestOptions);
+
         iosDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         iosDriver.findElement(AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeTextField'")).clear();
         iosDriver.findElement(AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeTextField'")).sendKeys("skolli@testbrigade.com");
