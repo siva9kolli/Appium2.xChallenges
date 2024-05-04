@@ -36,16 +36,9 @@ public class SwitchToNativeFromNative {
         uiAutomator2Options.setPlatformName("Android");
         uiAutomator2Options.setDeviceName("Google Pixel 5");
         uiAutomator2Options.setApp(System.getProperty("user.dir")+"/src/main/resources/NoBroker.apk");
-        //uiAutomator2Options.setApp("bs://8db1bebd3507ab1eb0fb5e857fdb9fcab3428019");
         uiAutomator2Options.setAppPackage("com.nobroker.app");
         uiAutomator2Options.setAppWaitActivity("com.nobroker.app.activities.NBLauncherActivity");
-
-
-//        HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
-//        browserstackOptions.put("appiumVersion", "2.0.0");
-//        desiredCapabilities.setCapability("bstack:options", browserstackOptions);
         uiAutomator2Options.merge(desiredCapabilities);
-        //androidDriver = new AndroidDriver(new URL("https://sivareddy_cnbmzj:HCpYpbNsUFNNsByoRp3S@hub.browserstack.com/wd/hub"), uiAutomator2Options);
         androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723"), uiAutomator2Options);
         wait = new WebDriverWait(androidDriver, Duration.ofSeconds(30));
         Thread.sleep(5000);
@@ -118,7 +111,9 @@ public class SwitchToNativeFromNative {
         androidDriver.activateApp("com.nobroker.app");
         Thread.sleep(2000);
         androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Need Assistance?\")")).isDisplayed();
-
+        String number = androidDriver.findElement(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"We are just a call away\")")).getText();
+        System.out.println(number);
+        Thread.sleep(3000);
 
     }
 }
